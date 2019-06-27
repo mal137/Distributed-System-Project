@@ -1,0 +1,58 @@
+version: "3"
+services:
+    hivemqbroker:
+        ports:
+        - "9001:8080"
+        - "1883:1883"
+        expose:
+        - "1883"
+        image: hivemq/hivemq3
+        networks:
+            vs_net_prak4:
+                aliases:
+                - hivemq.xyz.gg           
+    smarthome:
+        build: ./smarthome
+        volumes:
+        - "./smarthome"
+        networks:
+            vs_net_prak4:
+                aliases:
+                - smarthome.xyz.gg
+        ports:
+        - "9000:8081"
+        expose:
+        - "1883"
+        - "1337"
+        - "27015"
+        - "8081"
+        depends_on: 
+        - hivemqbroker
+    sensor:
+        build: ./sensor
+        volumes:
+        - "./sensor"
+        expose:
+        - "1337"
+        - "27015"
+        - "8081"
+        networks:
+            vs_net_prak4:
+                aliases:
+                - sensor.xyz.gg
+        depends_on: 
+        - smarthome
+    hersteller:
+        build: ./hersteller
+        volumes:
+        - "./hersteller"
+        networks:
+            vs_net_prak4:
+                aliases:
+                - hersteller.xyz.gg
+        depends_on: 
+        - sensor
+    
+networks:
+    vs_net_prak4:
+        driver: bridge 
