@@ -19,7 +19,7 @@
         <plugin.shade.version>3.2.0</plugin.shade.version>
 		<plugin.surefire.version>2.22.0</plugin.surefire.version>
         <plugin.gson.version>2.8.5</plugin.gson.version>
-        <plugin.jackson.version>2.9.6</plugin.jackson.version>
+        <plugin.jackson.version>2.13.4.1</plugin.jackson.version>
         <plugin.commons-lang3.version>3.5</plugin.commons-lang3.version>
         <!-- Some general properties. -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
